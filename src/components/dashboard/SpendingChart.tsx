@@ -11,7 +11,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div className="glass rounded-xl p-3 shadow-xl">
         <p className="font-medium">{categoryLabels[data.category]}</p>
-        <p className="text-lg font-bold">${data.amount.toLocaleString()}</p>
+        <p className="text-lg font-bold">₹{data.amount.toLocaleString('en-IN')}</p>
         <p className="text-sm text-muted-foreground">{data.percentage.toFixed(1)}%</p>
       </div>
     );
@@ -53,7 +53,7 @@ export const SpendingChart = ({ data }: SpendingChartProps) => {
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="text-sm text-muted-foreground">Total</span>
-            <span className="text-xl font-bold">${totalSpending.toLocaleString()}</span>
+            <span className="text-xl font-bold">₹{totalSpending.toLocaleString('en-IN')}</span>
           </div>
         </div>
         <div className="flex-1 grid grid-cols-2 gap-2">

@@ -13,11 +13,11 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         <div className="space-y-1">
           <p className="text-sm">
             <span className="text-income">Income:</span>{' '}
-            <span className="font-semibold">${payload[0]?.value?.toLocaleString()}</span>
+            <span className="font-semibold">₹{payload[0]?.value?.toLocaleString('en-IN')}</span>
           </p>
           <p className="text-sm">
             <span className="text-expense">Expenses:</span>{' '}
-            <span className="font-semibold">${payload[1]?.value?.toLocaleString()}</span>
+            <span className="font-semibold">₹{payload[1]?.value?.toLocaleString('en-IN')}</span>
           </p>
         </div>
       </div>
@@ -66,7 +66,7 @@ export const TrendChart = ({ data }: TrendChartProps) => {
               tick={{ fill: 'hsl(215, 20%, 55%)', fontSize: 12 }}
               axisLine={{ stroke: 'hsl(220, 15%, 18%)' }}
               tickLine={false}
-              tickFormatter={(value) => `$${value >= 1000 ? `${(value/1000).toFixed(0)}k` : value}`}
+              tickFormatter={(value) => `₹${value >= 1000 ? `${(value/1000).toFixed(0)}k` : value}`}
             />
             <Tooltip content={<CustomTooltip />} />
             <Area

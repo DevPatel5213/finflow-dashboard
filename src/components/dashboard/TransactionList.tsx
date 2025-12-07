@@ -36,7 +36,7 @@ export const TransactionList = ({ transactions, onDelete }: TransactionListProps
                 "font-semibold tabular-nums",
                 transaction.type === 'income' ? 'text-income' : 'text-expense'
               )}>
-                {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toLocaleString()}
+                {transaction.type === 'income' ? '+' : '-'}₹{transaction.amount.toLocaleString('en-IN')}
               </span>
               {onDelete && (
                 <Button
