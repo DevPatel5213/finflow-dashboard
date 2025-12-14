@@ -20,20 +20,20 @@ export const TransactionList = ({ transactions, onDelete }: TransactionListProps
             className="flex items-center justify-between p-3 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-all duration-200 group"
             style={{ animationDelay: `${300 + index * 50}ms` }}
           >
-            <div className="flex items-center gap-3">
-              <div className="text-2xl">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <div className="text-xl sm:text-2xl flex-shrink-0">
                 {categoryIcons[transaction.category]}
               </div>
-              <div>
-                <p className="font-medium text-sm">{transaction.description}</p>
-                <p className="text-xs text-muted-foreground">
+              <div className="min-w-0 flex-1">
+                <p className="font-medium text-xs sm:text-sm truncate">{transaction.description}</p>
+                <p className="text-xs text-muted-foreground truncate">
                   {categoryLabels[transaction.category]} • {format(parseISO(transaction.date), 'MMM d')}
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <span className={cn(
-                "font-semibold tabular-nums",
+                "font-semibold tabular-nums text-sm sm:text-base",
                 transaction.type === 'income' ? 'text-income' : 'text-expense'
               )}>
                 {transaction.type === 'income' ? '+' : '-'}₹{transaction.amount.toLocaleString('en-IN')}
@@ -42,10 +42,10 @@ export const TransactionList = ({ transactions, onDelete }: TransactionListProps
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-expense"
+                  className="h-7 w-7 sm:h-8 sm:w-8 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-expense"
                   onClick={() => onDelete(transaction.id)}
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
               )}
             </div>
