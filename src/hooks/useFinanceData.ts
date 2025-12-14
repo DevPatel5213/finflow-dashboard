@@ -50,6 +50,29 @@ export const useFinanceData = () => {
     return { totalBalance, totalIncome, totalExpenses, savingsRate };
   }, [transactions]);
 
+  const monthlySummary = useMemo(() => {
+    const now = new Date();
+    const monthStart = startOfMonth(now);
+    const monthEnd = endOfMonth(now);
+
+    const monthTransactions = transactions.filter(t => {
+      const transactionDate = parseISO(t.date);
+      return isWithinInterval(transactionDate, { start: monthStart, end: monthEnd });
+    });
+
+    const monthlyIncome = monthTransactions
+      .filter(t => t.type === 'income')
+      .reduce((sum, t) => sum + t.amount, 0);
+
+    const monthlyExpenses = monthTransactions
+      .filter(t => t.type === 'expense')
+      .reduce((sum, t) => sum + t.amount, 0);
+
+    const monthlyBalance = monthlyIncome - monthlyExpenses;
+
+    return { monthlyIncome, monthlyExpenses, monthlyBalance, month: format(now, 'MMMM yyyy') };
+  }, [transactions]);
+
   const categoryBreakdown: CategoryBreakdown[] = useMemo(() => {
     const expenses = transactions.filter(t => t.type === 'expense');
     const totalExpenses = expenses.reduce((sum, t) => sum + t.amount, 0);
@@ -113,6 +136,7 @@ export const useFinanceData = () => {
   return {
     transactions,
     summary,
+    monthlySummary,
     categoryBreakdown,
     monthlyData,
     recentTransactions,

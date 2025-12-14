@@ -40,14 +40,14 @@ export const StatCard = ({
   return (
     <div 
       className={cn(
-        "glass rounded-2xl p-6 animate-slide-up transition-all duration-300 hover:scale-[1.02]",
+        "glass rounded-xl sm:rounded-2xl p-4 sm:p-6 animate-slide-up transition-all duration-300 hover:scale-[1.02]",
         variantStyles[variant]
       )}
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-3 sm:mb-4">
         <div className={cn(
-          "p-3 rounded-xl",
+          "p-2 sm:p-3 rounded-lg sm:rounded-xl",
           iconStyles[variant]
         )}>
           {icon}
@@ -62,8 +62,8 @@ export const StatCard = ({
           </div>
         )}
       </div>
-      <p className="text-sm text-muted-foreground mb-1">{title}</p>
-      <p className="text-3xl font-bold tracking-tight">{value}</p>
+      <p className="text-xs sm:text-sm text-muted-foreground mb-1">{title}</p>
+      <p className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight break-all">{value}</p>
       {subtitle && (
         <p className="text-sm text-muted-foreground mt-2">{subtitle}</p>
       )}
