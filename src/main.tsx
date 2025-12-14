@@ -12,7 +12,7 @@ import "./index.css";
 
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter basename="/devpatel">
+  <BrowserRouter basename="/finflow-dashboard">
     <App />
   </BrowserRouter>
 );
